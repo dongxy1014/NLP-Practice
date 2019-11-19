@@ -211,7 +211,7 @@ def has_vector_representation(model, doc):
 
 
 def word2vec_similarity(questions):
-    word2vec_model = gensim.models.Word2Vec.load("C:/Users/Xdong/Desktop/NLP/word2vec_2018.model")
+    word2vec_model = gensim.models.Word2Vec.load("")
     word2vec_model.init_sims(replace=True)
     corpus = filter_docs(questions, lambda doc: has_vector_representation(word2vec_model, doc))
     word2vec_similarity = cosine_similarity(np.array([document_vector(word2vec_model, doc) for doc in corpus]))
@@ -222,7 +222,7 @@ def word2vec_similarity(questions):
 
 
 def doc2vec_similarity(questions):
-    doc2vec_model = gensim.models.Doc2Vec.load("C:/Users/Xdong/Desktop/NLP/doc2vec_2018_doc.model")
+    doc2vec_model = gensim.models.Doc2Vec.load("")
     corpus = filter_docs(questions, lambda doc: has_vector_representation(doc2vec_model, doc))
     doc2vec_similarity = cosine_similarity(np.array([doc2vec_model.infer_vector(doc) for doc in corpus]))
     np.fill_diagonal(doc2vec_similarity, 0)
